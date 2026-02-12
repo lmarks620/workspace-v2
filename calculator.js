@@ -177,11 +177,11 @@ function updateComplianceDisplay(level) {
     };
     score.textContent = labels[level];
     
-    // Update risk message
+    // Update risk message - now framed as protection
     const messages = {
-        high: 'Based on your answers, your organization has significant compliance gaps that could expose you to lawsuits. Open meetings violations, accessibility issues, and record retention failures are common sources of municipal litigation.',
-        medium: 'Your organization has some compliance measures in place, but gaps remain. Consider automated solutions to reduce your exposure to compliance lawsuits.',
-        low: 'Your organization has good compliance practices in place. Automated meeting management can further strengthen your compliance posture and reduce residual risk.'
+        high: 'Without automated compliance tools, your organization faces significant exposure to open meetings and public records lawsuits. eScribe\'s automated notice posting, WCAG-compliant publishing, and record retention protect you from these costly violations.',
+        medium: 'Your organization has some compliance measures in place. eScribe strengthens your protection with automated workflows that ensure consistent compliance with open meetings laws and accessibility requirements.',
+        low: 'You have good compliance practices. eScribe provides an additional layer of protection with automated audit trails, compliant document publishing, and built-in record retention policies.'
     };
     elements.riskMessage.textContent = messages[level];
     

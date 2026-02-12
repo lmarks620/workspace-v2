@@ -382,6 +382,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
     background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
 }
 
+.result-card.protected {
+    background: linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%);
+}
+
 .result-icon {
     width: 48px;
     height: 48px;
@@ -404,6 +408,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .result-card.warning .result-icon {
     color: var(--danger);
+}
+
+.result-card.protected .result-icon {
+    color: #7C3AED;
 }
 
 .result-value {
@@ -589,6 +597,19 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .risk-detail.low-risk {
     background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
     border-color: #A7F3D0;
+}
+
+.risk-detail.protected-detail {
+    background: linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%);
+    border-color: #C4B5FD;
+}
+
+.protection-message svg {
+    color: #7C3AED;
+}
+
+.protected-value {
+    color: #7C3AED !important;
 }
 
 .risk-detail h3 {
