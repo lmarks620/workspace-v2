@@ -3,6 +3,10 @@
  * Calculates time savings, cost savings, and compliance risk reduction
  */
 
+// Currency configuration
+let currentCurrency = 'USD';
+const EXCHANGE_RATE = 1.36; // USD to CAD
+
 // Configuration and benchmarks
 const CONFIG = {
     // Hours with eScribe (based on 80% reduction average)
@@ -140,6 +144,32 @@ function formatNumber(num) {
     return Math.round(num).toLocaleString('en-US');
 }
 
+function formatCurrency(num) {
+    const converted = currentCurrency === 'CAD' ? num * EXCHANGE_RATE : num;
+    return Math.round(converted).toLocaleString('en-US');
+}
+
+function updateCurrencyLabels() {
+    const usdLabel = document.querySelector('.currency-label[data-currency="USD"]');
+    const cadLabel = document.querySelector('.currency-label[data-currency="CAD"]');
+    
+    if (currentCurrency === 'USD') {
+        usdLabel.classList.add('active');
+        cadLabel.classList.remove('active');
+    } else {
+        usdLabel.classList.remove('active');
+        cadLabel.classList.add('active');
+    }
+    
+    // Update static currency values in the page
+    document.querySelectorAll('.currency-value').forEach(el => {
+        const usdValue = parseFloat(el.dataset.usd);
+        if (!isNaN(usdValue)) {
+            el.textContent = '$' + formatCurrency(usdValue);
+        }
+    });
+}
+
 function getComplianceLevel() {
     const checks = [
         elements.comp1.checked,
@@ -239,20 +269,20 @@ function calculate() {
     
     // Update display - Summary cards
     elements.totalHoursSaved.textContent = formatNumber(totalHoursSaved);
-    elements.totalSavings.textContent = formatNumber(totalSavings);
-    elements.complianceRisk.textContent = formatNumber(currentRiskExposure);
+    elements.totalSavings.textContent = formatCurrency(totalSavings);
+    elements.complianceRisk.textContent = formatCurrency(currentRiskExposure);
     
     // Update display - Breakdown
-    elements.laborSavings.textContent = formatNumber(laborSavings);
+    elements.laborSavings.textContent = formatCurrency(laborSavings);
     elements.hoursSavedDetail.textContent = formatNumber(totalHoursSaved);
-    elements.hourlyRateDetail.textContent = formatNumber(hourlyRate);
+    elements.hourlyRateDetail.textContent = formatCurrency(hourlyRate);
     
-    elements.printSavings.textContent = formatNumber(printSavings);
+    elements.printSavings.textContent = formatCurrency(printSavings);
     elements.meetingsDetail.textContent = meetings;
     elements.pagesDetail.textContent = pages;
     elements.copiesDetail.textContent = copies;
     
-    elements.complianceSavings.textContent = formatNumber(complianceSavings);
+    elements.complianceSavings.textContent = formatCurrency(complianceSavings);
     
     // Update progress bars (relative to total)
     const maxSaving = Math.max(laborSavings, printSavings, complianceSavings);
@@ -272,10 +302,10 @@ function calculate() {
     
     // Update risk detail
     elements.lawsuitProbability.textContent = `${Math.round(currentProbability * 100)}%`;
-    elements.avgSettlement.textContent = formatNumber(currentRiskExposure);
+    elements.avgSettlement.textContent = formatCurrency(currentRiskExposure);
     
     // Update total value
-    elements.totalValue.textContent = formatNumber(totalValue);
+    elements.totalValue.textContent = formatCurrency(totalValue);
 }
 
 // Update defaults when organization size changes
@@ -313,12 +343,24 @@ elements.comp3.addEventListener('change', calculate);
 elements.comp4.addEventListener('change', calculate);
 elements.comp5.addEventListener('change', calculate);
 
+// Currency toggle
+const currencyToggle = document.getElementById('currencyToggle');
+if (currencyToggle) {
+    currencyToggle.addEventListener('change', function() {
+        currentCurrency = this.checked ? 'CAD' : 'USD';
+        updateCurrencyLabels();
+        calculate();
+    });
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
+    updateCurrencyLabels();
     calculate();
 });
 
 // Also run calculation immediately in case DOM is already loaded
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    updateCurrencyLabels();
     calculate();
 }

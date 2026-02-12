@@ -20,6 +20,17 @@
                 </svg>
                 <span>eScribe</span>
             </div>
+            
+            <!-- Currency Toggle -->
+            <div class="currency-toggle">
+                <span class="currency-label" data-currency="USD">USD $</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="currencyToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="currency-label" data-currency="CAD">CAD $</span>
+            </div>
+            
             <h1>ROI Calculator</h1>
             <p class="subtitle">Discover how much time and money your city can save with automated meeting management</p>
         </header>
@@ -56,7 +67,19 @@
 
                 <!-- Hours Per Meeting -->
                 <div class="input-group">
-                    <label for="hoursPerMeeting">Current Hours Per Meeting (Manual Process)</label>
+                    <label for="hoursPerMeeting">Current Hours Per Meeting (Manual Process)
+                        <span class="citation-icon" data-citation="time">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <text x="12" y="16" text-anchor="middle" font-size="12" font-weight="600">i</text>
+                            </svg>
+                            <span class="citation-tooltip">
+                                <strong>Source: GFOA Research (2021)</strong><br>
+                                1/3 of gov finance officers cite meetings as top source of wasted time. 65% say meetings prevent completing work.
+                                <a href="https://www.gfoa.org/materials/meetings" target="_blank">View source</a>
+                            </span>
+                        </span>
+                    </label>
                     <input type="range" id="hoursPerMeeting" min="10" max="50" value="25" step="1">
                     <div class="range-value"><span id="hoursPerMeetingValue">25</span> hours</div>
                     <span class="input-hint">Industry average: 20-40 hours for manual processes</span>
@@ -72,7 +95,19 @@
                     <span class="input-hint">Include benefits (typically 1.3x base salary)</span>
                 </div>
 
-                <h2 class="section-divider">Printing Costs</h2>
+                <h2 class="section-divider">Printing Costs
+                    <span class="citation-icon" data-citation="print">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <text x="12" y="16" text-anchor="middle" font-size="12" font-weight="600">i</text>
+                        </svg>
+                        <span class="citation-tooltip">
+                            <strong>Source: US Printing Cost Guide (2025)</strong><br>
+                            Office laser printing averages $0.02-$0.10/page. Calculator uses $0.07/page (mid-range with color).
+                            <a href="https://latestcost.com/average-cost-printing-per-american-users/" target="_blank">View source</a>
+                        </span>
+                    </span>
+                </h2>
 
                 <!-- Agenda Packet Pages -->
                 <div class="input-group">
@@ -87,8 +122,20 @@
                     <span class="input-hint">Council members + staff + public copies</span>
                 </div>
 
-                <h2 class="section-divider">Compliance Risk Assessment</h2>
-                <p class="section-description">Answer these questions to assess your compliance exposure. Non-compliant meeting processes can result in lawsuits costing $35,000 - $400,000+.</p>
+                <h2 class="section-divider">Compliance Risk Assessment
+                    <span class="citation-icon" data-citation="compliance">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <text x="12" y="16" text-anchor="middle" font-size="12" font-weight="600">i</text>
+                        </svg>
+                        <span class="citation-tooltip">
+                            <strong>Source: eScribe 2024 State of the Clerk Survey</strong><br>
+                            500+ municipal clerks surveyed. Time management and compliance cited as top challenges.
+                            <a href="https://icma.org/events/insights-2024-state-clerks-office-report" target="_blank">View source</a>
+                        </span>
+                    </span>
+                </h2>
+                <p class="section-description">Answer these questions to assess your compliance exposure. Non-compliant meeting processes can result in lawsuits costing <span class="currency-value" data-usd="35000">$35,000</span> - <span class="currency-value" data-usd="400000">$400,000</span>+.</p>
 
                 <!-- Compliance Questions -->
                 <div class="compliance-questions">
@@ -265,10 +312,10 @@
                     <div class="risk-examples">
                         <h4>Lawsuits eScribe Helps You Avoid:</h4>
                         <ul>
-                            <li><strong>Healdsburg, CA (2025):</strong> $163,158 - Brown Act violations</li>
-                            <li><strong>Town of Basalt, CO:</strong> $115,000 - Open meetings violations</li>
-                            <li><strong>Central Bucks School District:</strong> $76,500 - Sunshine Act violations</li>
-                            <li><strong>Edgar Springs, MO:</strong> $80,000+ - Sunshine Law violations</li>
+                            <li><strong>Healdsburg, CA (2025):</strong> <span class="currency-value" data-usd="163158">$163,158</span> - Brown Act violations</li>
+                            <li><strong>Town of Basalt, CO:</strong> <span class="currency-value" data-usd="115000">$115,000</span> - Open meetings violations</li>
+                            <li><strong>Central Bucks School District:</strong> <span class="currency-value" data-usd="76500">$76,500</span> - Sunshine Act violations</li>
+                            <li><strong>Edgar Springs, MO:</strong> <span class="currency-value" data-usd="80000">$80,000</span>+ - Sunshine Law violations</li>
                         </ul>
                     </div>
                 </div>
@@ -292,7 +339,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>Calculations based on industry research from Granicus, CivicPlus, and municipal case studies.</p>
+            <p>Calculations based on GFOA research, eScribe's 2024 State of the Clerk Survey (ICMA), and municipal case studies.</p>
             <p>Actual savings may vary based on your organization's specific processes and requirements.</p>
             <div class="footer-links">
                 <a href="https://www.escribemeetings.com/" target="_blank">eScribe Home</a>
