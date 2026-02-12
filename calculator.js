@@ -150,15 +150,17 @@ function formatCurrency(num) {
 }
 
 function updateCurrencyLabels() {
-    const usdLabel = document.querySelector('.currency-label[data-currency="USD"]');
-    const cadLabel = document.querySelector('.currency-label[data-currency="CAD"]');
+    const usdBtn = document.getElementById('usdBtn');
+    const cadBtn = document.getElementById('cadBtn');
     
-    if (currentCurrency === 'USD') {
-        usdLabel.classList.add('active');
-        cadLabel.classList.remove('active');
-    } else {
-        usdLabel.classList.remove('active');
-        cadLabel.classList.add('active');
+    if (usdBtn && cadBtn) {
+        if (currentCurrency === 'USD') {
+            usdBtn.classList.add('active');
+            cadBtn.classList.remove('active');
+        } else {
+            usdBtn.classList.remove('active');
+            cadBtn.classList.add('active');
+        }
     }
     
     // Update static currency values in the page
@@ -343,11 +345,19 @@ elements.comp3.addEventListener('change', calculate);
 elements.comp4.addEventListener('change', calculate);
 elements.comp5.addEventListener('change', calculate);
 
-// Currency toggle
-const currencyToggle = document.getElementById('currencyToggle');
-if (currencyToggle) {
-    currencyToggle.addEventListener('change', function() {
-        currentCurrency = this.checked ? 'CAD' : 'USD';
+// Currency toggle buttons
+const usdBtn = document.getElementById('usdBtn');
+const cadBtn = document.getElementById('cadBtn');
+
+if (usdBtn && cadBtn) {
+    usdBtn.addEventListener('click', function() {
+        currentCurrency = 'USD';
+        updateCurrencyLabels();
+        calculate();
+    });
+    
+    cadBtn.addEventListener('click', function() {
+        currentCurrency = 'CAD';
         updateCurrencyLabels();
         calculate();
     });

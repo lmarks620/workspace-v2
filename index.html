@@ -23,12 +23,8 @@
             
             <!-- Currency Toggle -->
             <div class="currency-toggle">
-                <span class="currency-label" data-currency="USD">USD $</span>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="currencyToggle">
-                    <span class="toggle-slider"></span>
-                </label>
-                <span class="currency-label" data-currency="CAD">CAD $</span>
+                <button type="button" class="currency-btn active" data-currency="USD" id="usdBtn">USD $</button>
+                <button type="button" class="currency-btn" data-currency="CAD" id="cadBtn">CAD $</button>
             </div>
             
             <h1>ROI Calculator</h1>
@@ -68,13 +64,9 @@
                 <!-- Hours Per Meeting -->
                 <div class="input-group">
                     <label for="hoursPerMeeting">Current Hours Per Meeting (Manual Process)
-                        <span class="citation-icon" data-citation="time">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
-                                <text x="12" y="16" text-anchor="middle" font-size="12" font-weight="600">i</text>
-                            </svg>
+                        <span class="citation-icon">
                             <span class="citation-tooltip">
-                                <strong>Source: GFOA Research (2021)</strong><br>
+                                <strong>Source: GFOA Research (2021)</strong>
                                 1/3 of gov finance officers cite meetings as top source of wasted time. 65% say meetings prevent completing work.
                                 <a href="https://www.gfoa.org/materials/meetings" target="_blank">View source</a>
                             </span>
@@ -96,13 +88,9 @@
                 </div>
 
                 <h2 class="section-divider">Printing Costs
-                    <span class="citation-icon" data-citation="print">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <text x="12" y="16" text-anchor="middle" font-size="12" font-weight="600">i</text>
-                        </svg>
+                    <span class="citation-icon">
                         <span class="citation-tooltip">
-                            <strong>Source: US Printing Cost Guide (2025)</strong><br>
+                            <strong>Source: US Printing Cost Guide (2025)</strong>
                             Office laser printing averages $0.02-$0.10/page. Calculator uses $0.07/page (mid-range with color).
                             <a href="https://latestcost.com/average-cost-printing-per-american-users/" target="_blank">View source</a>
                         </span>
@@ -123,13 +111,9 @@
                 </div>
 
                 <h2 class="section-divider">Compliance Risk Assessment
-                    <span class="citation-icon" data-citation="compliance">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <text x="12" y="16" text-anchor="middle" font-size="12" font-weight="600">i</text>
-                        </svg>
+                    <span class="citation-icon">
                         <span class="citation-tooltip">
-                            <strong>Source: eScribe 2024 State of the Clerk Survey</strong><br>
+                            <strong>Source: eScribe 2024 State of the Clerk Survey</strong>
                             500+ municipal clerks surveyed. Time management and compliance cited as top challenges.
                             <a href="https://icma.org/events/insights-2024-state-clerks-office-report" target="_blank">View source</a>
                         </span>
