@@ -47,9 +47,9 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: 2rem 2.5rem;
 }
 
 /* Header */
@@ -271,7 +271,7 @@ body {
 .calculator {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
     align-items: start;
 }
 
@@ -315,7 +315,7 @@ body {
 .compliance-section {
     background: white;
     border-radius: var(--radius-xl);
-    padding: 2rem;
+    padding: 2.25rem;
     box-shadow: var(--shadow-lg);
 }
 
@@ -561,7 +561,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .results-section {
     background: white;
     border-radius: var(--radius-xl);
-    padding: 2rem;
+    padding: 2.25rem;
     box-shadow: var(--shadow-lg);
 }
 
