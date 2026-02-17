@@ -986,7 +986,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     margin-top: 1rem;
 }
 
-/* ROI Section - first in middle column */
+/* ROI Section - time-based (first in middle column) */
 .roi-section {
     text-align: center;
     padding: 1rem 1.25rem;
@@ -1007,7 +1007,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .roi-value {
-    font-size: 3.5rem;
+    font-size: 3.25rem;
     font-weight: 800;
     color: var(--success);
     line-height: 1.1;

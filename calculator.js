@@ -139,9 +139,8 @@ const elements = {
     riskMessage: document.getElementById('riskMessage'),
     avgSettlement: document.getElementById('avgSettlement'),
     
-    // ROI
-    roiPercent: document.getElementById('roiPercent'),
-    annualCost: document.getElementById('annualCost')
+    // Time-based ROI % (percent of meeting prep time recovered)
+    roiPercent: document.getElementById('roiPercent')
 };
 
 // Helper functions
@@ -276,11 +275,6 @@ function calculate() {
     const totalSavings = laborSavings + printSavings;
     const totalValue = totalSavings + complianceSavings;
     
-    // ROI % (annual value vs annual cost, in selected currency)
-    const annualCostNum = parseFloat(elements.annualCost.value) || 15000;
-    const totalValueInCurrency = currentCurrency === 'CAD' ? totalValue * EXCHANGE_RATE : totalValue;
-    const roiPercent = annualCostNum > 0 ? Math.round(((totalValueInCurrency - annualCostNum) / annualCostNum) * 100) : 0;
-    
     // Update display - Summary cards
     elements.totalHoursSaved.textContent = formatNumber(totalHoursSaved);
     elements.totalSavings.textContent = formatCurrency(totalSavings);
@@ -317,9 +311,9 @@ function calculate() {
     // Update risk detail
     elements.avgSettlement.textContent = formatCurrency(currentRiskExposure);
     
-    // Update ROI %
+    // Update Time ROI % (based on time savings: % of meeting prep time recovered)
     if (elements.roiPercent) {
-        elements.roiPercent.textContent = roiPercent;
+        elements.roiPercent.textContent = timeSavingsPercent;
     }
 }
 
@@ -345,7 +339,6 @@ elements.orgSize.addEventListener('change', updateDefaults);
 elements.committeeMeetings.addEventListener('input', calculate);
 elements.councilMeetings.addEventListener('input', calculate);
 elements.staffCount.addEventListener('input', calculate);
-elements.annualCost.addEventListener('input', calculate);
 elements.hoursPerMeeting.addEventListener('input', function() {
     elements.hoursPerMeetingValue.textContent = this.value;
     calculate();
