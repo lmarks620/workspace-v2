@@ -275,6 +275,12 @@ body {
     align-items: start;
 }
 
+.calculator .col-left,
+.calculator .col-middle,
+.calculator .col-right {
+    min-width: 0; /* lets columns shrink equally */
+}
+
 .col-left {
     grid-column: 1;
 }
