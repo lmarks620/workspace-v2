@@ -1019,6 +1019,16 @@ input[type="range"]::-webkit-slider-thumb:hover {
     margin-top: 0.5rem;
 }
 
+.roi-formula {
+    font-size: 0.7rem;
+    color: var(--gray-500);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Primary CTA - more prominent */
 .cta-button.cta-primary {
     font-size: 1.25rem;
