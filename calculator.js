@@ -372,8 +372,9 @@ if (usdBtn && cadBtn) {
     });
 }
 
-// Initialize
+// Initialize: set inputs from selected org size so default is 48 meetings (960 hrs) like original
 document.addEventListener('DOMContentLoaded', function() {
+    updateDefaults(); // sync committee/council etc. to org size so total meetings = 48 for Medium
     updateCurrencyLabels();
     calculate();
 });
