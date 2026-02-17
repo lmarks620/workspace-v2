@@ -319,9 +319,11 @@ function calculate() {
 
 // Update defaults when organization size changes
 function updateDefaults() {
+    if (!elements.orgSize) return;
     const size = elements.orgSize.value;
     const defaults = CONFIG.orgSizeDefaults[size];
-    
+    if (!defaults) return;
+
     elements.committeeMeetings.value = defaults.committee;
     elements.councilMeetings.value = defaults.council;
     elements.staffCount.value = defaults.staff;
@@ -334,8 +336,10 @@ function updateDefaults() {
     calculate();
 }
 
-// Event listeners
-elements.orgSize.addEventListener('change', updateDefaults);
+// Event listeners (attach after DOM ready so org-size change reliably updates values)
+function attachListeners() {
+    if (elements.orgSize) elements.orgSize.addEventListener('change', updateDefaults);
+}
 elements.committeeMeetings.addEventListener('input', calculate);
 elements.councilMeetings.addEventListener('input', calculate);
 elements.staffCount.addEventListener('input', calculate);
@@ -374,13 +378,8 @@ if (usdBtn && cadBtn) {
 
 // Initialize: set inputs from selected org size so default is 48 meetings (960 hrs) like original
 document.addEventListener('DOMContentLoaded', function() {
+    attachListeners();
     updateDefaults(); // sync committee/council etc. to org size so total meetings = 48 for Medium
     updateCurrencyLabels();
     calculate();
 });
-
-// Also run calculation immediately in case DOM is already loaded
-if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    updateCurrencyLabels();
-    calculate();
-}
