@@ -245,10 +245,8 @@ function calculate() {
     // Calculate time savings
     const hoursSavedPerMeeting = hoursManual - hoursWithEscribe;
     const totalHoursSaved = meetings * hoursSavedPerMeeting;
+    // Time ROI = % of meeting prep time recovered (hours you get back per meeting ÷ hours you spend now)
     const timeSavingsPercent = Math.round((hoursSavedPerMeeting / hoursManual) * 100);
-    // Time ROI = % of staff capacity recovered (so it updates when meetings, staff, or hours change)
-    const annualStaffHours = staff * 2080;
-    const timeRoiPercent = annualStaffHours > 0 ? Math.round((totalHoursSaved / annualStaffHours) * 100) : 0;
     
     // Calculate labor savings
     const laborSavings = totalHoursSaved * hourlyRate;
@@ -314,9 +312,9 @@ function calculate() {
     // Update risk detail
     elements.avgSettlement.textContent = formatCurrency(currentRiskExposure);
     
-    // Update Time ROI % (% of staff capacity recovered — responds to meetings, staff, hours)
+    // Update Time ROI % (% of meeting prep time recovered)
     if (elements.roiPercent) {
-        elements.roiPercent.textContent = timeRoiPercent;
+        elements.roiPercent.textContent = timeSavingsPercent;
     }
 }
 
