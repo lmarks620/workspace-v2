@@ -565,19 +565,25 @@ input[type="range"]::-webkit-slider-thumb:hover {
     box-shadow: var(--shadow-lg);
 }
 
+.results-section {
+    overflow-x: hidden;
+    min-width: 0;
+}
+
 .results-section h2 {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--gray-800);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-/* Results Grid */
+/* Results Grid - compact so cards fit in middle column */
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    min-width: 0;
 }
 
 @media (max-width: 600px) {
@@ -588,9 +594,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .result-card {
     background: var(--gray-50);
-    border-radius: var(--radius-lg);
-    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    padding: 0.65rem 0.5rem;
     text-align: center;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .result-card.primary {
@@ -610,14 +618,14 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .result-icon {
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 0.75rem;
+    margin: 0 auto 0.4rem;
     box-shadow: var(--shadow-sm);
 }
 
@@ -638,18 +646,20 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 .result-value {
-    font-size: 1.75rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--gray-900);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.15rem;
+    word-break: break-word;
 }
 
 .result-label {
-    font-size: 0.75rem;
+    font-size: 0.6rem;
     font-weight: 500;
     color: var(--gray-600);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
 }
 
 /* Breakdown */
@@ -976,11 +986,11 @@ input[type="range"]::-webkit-slider-thumb:hover {
     margin-top: 1rem;
 }
 
-/* ROI Section - prominent in middle column */
+/* ROI Section - first in middle column */
 .roi-section {
     text-align: center;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    margin: 0 0 1.25rem 0;
     background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
     border: 2px solid var(--success);
     border-radius: var(--radius-xl);

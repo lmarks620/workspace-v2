@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
     <div class="container">
@@ -127,8 +127,15 @@
                 </div>
             </section>
 
-            <!-- Middle Column: Savings + ROI + CTA -->
+            <!-- Middle Column: ROI first, then Savings + CTA -->
             <section class="results-section col-middle">
+                <!-- ROI % first -->
+                <div class="roi-section">
+                    <div class="roi-label">Your ROI with eScribe</div>
+                    <div class="roi-value"><span id="roiPercent">315</span>%</div>
+                    <p class="roi-caption">Return on your annual investment</p>
+                </div>
+
                 <h2>Your Potential Savings</h2>
 
                 <!-- Summary Cards -->
@@ -232,13 +239,6 @@
                     <div class="comparison-savings">
                         <span class="savings-percent" id="timeSavingsPercent">80%</span> time reduction per meeting
                     </div>
-                </div>
-
-                <!-- ROI % (prominent) -->
-                <div class="roi-section">
-                    <div class="roi-label">Your ROI with eScribe</div>
-                    <div class="roi-value"><span id="roiPercent">315</span>%</div>
-                    <p class="roi-caption">Return on your annual investment</p>
                 </div>
 
                 <!-- CTA (prominent) -->
