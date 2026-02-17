@@ -33,8 +33,8 @@
 
         <!-- Main Calculator -->
         <main class="calculator">
-            <!-- Input Section -->
-            <section class="input-section">
+            <!-- Left Column: Your Organization -->
+            <section class="input-section col-left">
                 <h2>Your Organization</h2>
                 
                 <!-- Organization Size -->
@@ -48,11 +48,17 @@
                     </select>
                 </div>
 
-                <!-- Meetings Per Year -->
+                <!-- Committee Meetings Per Year -->
                 <div class="input-group">
-                    <label for="meetingsPerYear">Meetings Per Year</label>
-                    <input type="number" id="meetingsPerYear" value="48" min="1" max="500">
-                    <span class="input-hint">Council + committee meetings combined</span>
+                    <label for="committeeMeetings">Committee Meetings Per Year</label>
+                    <input type="number" id="committeeMeetings" value="24" min="0" max="500">
+                </div>
+
+                <!-- Council Meetings Per Year -->
+                <div class="input-group">
+                    <label for="councilMeetings">Council Meetings Per Year</label>
+                    <input type="number" id="councilMeetings" value="24" min="0" max="500">
+                    <span class="input-hint">Council + committee = total meetings</span>
                 </div>
 
                 <!-- Staff Involved -->
@@ -110,64 +116,19 @@
                     <span class="input-hint">Council members + staff + public copies</span>
                 </div>
 
-                <h2 class="section-divider">Compliance Risk Assessment
-                    <span class="citation-icon">
-                        <span class="citation-tooltip">
-                            <strong>Source: eScribe 2024 State of the Clerk Survey</strong>
-                            500+ municipal clerks surveyed. Time management and compliance cited as top challenges.
-                            <a href="https://icma.org/events/insights-2024-state-clerks-office-report" target="_blank">View source</a>
-                        </span>
-                    </span>
-                </h2>
-                <p class="section-description">Answer these questions to assess your compliance exposure. Non-compliant meeting processes can result in lawsuits costing <span class="currency-value" data-usd="35000">$35,000</span> - <span class="currency-value" data-usd="400000">$400,000</span>+.</p>
-
-                <!-- Compliance Questions -->
-                <div class="compliance-questions">
-                    <div class="compliance-item">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="comp1">
-                            <span class="checkmark"></span>
-                            <span>Do you have automated meeting notice posting?</span>
-                        </label>
+                <!-- Annual eScribe Investment (for ROI) -->
+                <div class="input-group">
+                    <label for="annualCost">Annual eScribe Investment (est.)</label>
+                    <div class="input-with-prefix">
+                        <span class="prefix">$</span>
+                        <input type="number" id="annualCost" value="15000" min="1000" max="200000" step="1000">
                     </div>
-                    <div class="compliance-item">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="comp2">
-                            <span class="checkmark"></span>
-                            <span>Are agendas published online 24-48 hours before meetings?</span>
-                        </label>
-                    </div>
-                    <div class="compliance-item">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="comp3">
-                            <span class="checkmark"></span>
-                            <span>Are your documents WCAG 2.1 AA accessible?</span>
-                        </label>
-                    </div>
-                    <div class="compliance-item">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="comp4">
-                            <span class="checkmark"></span>
-                            <span>Do you have automated record retention policies?</span>
-                        </label>
-                    </div>
-                    <div class="compliance-item">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="comp5">
-                            <span class="checkmark"></span>
-                            <span>Can citizens easily search past meeting records?</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="compliance-score" id="complianceScoreBox">
-                    <div class="score-label">Your Compliance Risk Level</div>
-                    <div class="score-value high-risk" id="complianceScore">High Risk</div>
+                    <span class="input-hint">Used to calculate your ROI %</span>
                 </div>
             </section>
 
-            <!-- Results Section -->
-            <section class="results-section">
+            <!-- Middle Column: Savings + ROI + CTA -->
+            <section class="results-section col-middle">
                 <h2>Your Potential Savings</h2>
 
                 <!-- Summary Cards -->
@@ -273,7 +234,82 @@
                     </div>
                 </div>
 
-                <!-- Compliance Risk Detail -->
+                <!-- ROI % (prominent) -->
+                <div class="roi-section">
+                    <div class="roi-label">Your ROI with eScribe</div>
+                    <div class="roi-value"><span id="roiPercent">315</span>%</div>
+                    <p class="roi-caption">Return on your annual investment</p>
+                </div>
+
+                <!-- CTA (prominent) -->
+                <div class="cta-section">
+                    <a href="https://www.escribemeetings.com/request-demo/" class="cta-button cta-primary" target="_blank">
+                        Book a 15-Min Demo
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <p class="cta-note">See your exact savings with a custom ROI report</p>
+                </div>
+            </section>
+
+            <!-- Right Column: Compliance -->
+            <section class="compliance-section col-right">
+                <h2>Compliance Risk Assessment
+                    <span class="citation-icon">
+                        <span class="citation-tooltip">
+                            <strong>Source: eScribe 2024 State of the Clerk Survey</strong>
+                            500+ municipal clerks surveyed. Time management and compliance cited as top challenges.
+                            <a href="https://icma.org/events/insights-2024-state-clerks-office-report" target="_blank">View source</a>
+                        </span>
+                    </span>
+                </h2>
+                <p class="section-description">Answer these questions to assess your compliance exposure. Non-compliant meeting processes can result in lawsuits costing <span class="currency-value" data-usd="35000">$35,000</span> - <span class="currency-value" data-usd="400000">$400,000</span>+.</p>
+
+                <div class="compliance-questions">
+                    <div class="compliance-item">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="comp1">
+                            <span class="checkmark"></span>
+                            <span>Do you have automated meeting notice posting?</span>
+                        </label>
+                    </div>
+                    <div class="compliance-item">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="comp2">
+                            <span class="checkmark"></span>
+                            <span>Are agendas published online 24-48 hours before meetings?</span>
+                        </label>
+                    </div>
+                    <div class="compliance-item">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="comp3">
+                            <span class="checkmark"></span>
+                            <span>Are your documents WCAG 2.1 AA accessible?</span>
+                        </label>
+                    </div>
+                    <div class="compliance-item">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="comp4">
+                            <span class="checkmark"></span>
+                            <span>Do you have automated record retention policies?</span>
+                        </label>
+                    </div>
+                    <div class="compliance-item">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="comp5">
+                            <span class="checkmark"></span>
+                            <span>Can citizens easily search past meeting records?</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="compliance-score" id="complianceScoreBox">
+                    <div class="score-label">Your Compliance Risk Level</div>
+                    <div class="score-value high-risk" id="complianceScore">High Risk</div>
+                </div>
+
+                <!-- Compliance Protection with eScribe (purple box) -->
                 <div class="risk-detail protected-detail" id="riskDetailBox">
                     <h3>Compliance Protection with eScribe</h3>
                     <div class="risk-warning protection-message">
@@ -302,21 +338,6 @@
                             <li><strong>Edgar Springs, MO:</strong> <span class="currency-value" data-usd="80000">$80,000</span>+ - Sunshine Law violations</li>
                         </ul>
                     </div>
-                </div>
-
-                <!-- CTA -->
-                <div class="cta-section">
-                    <div class="total-value">
-                        <div class="total-label">Total Value with eScribe</div>
-                        <div class="total-amount">$<span id="totalValue">62,210</span><span class="per-year">/year</span></div>
-                    </div>
-                    <a href="https://www.escribemeetings.com/request-demo/" class="cta-button" target="_blank">
-                        Get Your Custom Demo
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                    <p class="cta-note">See how eScribe can transform your meeting management</p>
                 </div>
             </section>
         </main>

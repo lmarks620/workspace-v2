@@ -267,26 +267,55 @@ body {
     }
 }
 
-/* Calculator Layout */
+/* Calculator Layout - 3 columns */
 .calculator {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 2rem;
+    grid-template-columns: 1fr 1.25fr 1fr;
+    gap: 1.5rem;
     align-items: start;
 }
 
-@media (max-width: 968px) {
+.col-left {
+    grid-column: 1;
+}
+.col-middle {
+    grid-column: 2;
+}
+.col-right {
+    grid-column: 3;
+}
+
+@media (max-width: 1200px) {
+    .calculator {
+        grid-template-columns: 1fr 1fr;
+    }
+    .col-left { grid-column: 1; }
+    .col-middle { grid-column: 2; }
+    .col-right { grid-column: 1 / -1; }
+}
+
+@media (max-width: 768px) {
     .calculator {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .col-left, .col-middle, .col-right {
+        grid-column: 1;
     }
 }
 
-/* Input Section */
-.input-section {
+/* Input Section & Compliance Section (same card style) */
+.input-section,
+.compliance-section {
     background: white;
     border-radius: var(--radius-xl);
     padding: 2rem;
     box-shadow: var(--shadow-lg);
+}
+
+.compliance-section {
+    position: sticky;
+    top: 1rem;
 }
 
 .input-section h2 {
@@ -939,6 +968,47 @@ input[type="range"]::-webkit-slider-thumb:hover {
     font-size: 0.875rem;
     color: var(--gray-500);
     margin-top: 1rem;
+}
+
+/* ROI Section - prominent in middle column */
+.roi-section {
+    text-align: center;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+    border: 2px solid var(--success);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+}
+
+.roi-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gray-700);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.roi-value {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--success);
+    line-height: 1.1;
+}
+
+.roi-caption {
+    font-size: 0.8125rem;
+    color: var(--gray-600);
+    margin-top: 0.5rem;
+}
+
+/* Primary CTA - more prominent */
+.cta-button.cta-primary {
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
+    width: 100%;
+    justify-content: center;
 }
 
 /* Footer */

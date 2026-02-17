@@ -15,10 +15,11 @@ const CONFIG = {
     // Printing cost per page (B&W laser)
     costPerPage: 0.07,
     
-    // Organization size defaults
+    // Organization size defaults (committee + council = total meetings)
     orgSizeDefaults: {
         small: {
-            meetings: 30,
+            committee: 15,
+            council: 15,
             staff: 2,
             hours: 20,
             rate: 35,
@@ -26,7 +27,8 @@ const CONFIG = {
             copies: 10
         },
         medium: {
-            meetings: 48,
+            committee: 24,
+            council: 24,
             staff: 3,
             hours: 25,
             rate: 40,
@@ -34,7 +36,8 @@ const CONFIG = {
             copies: 15
         },
         large: {
-            meetings: 72,
+            committee: 36,
+            council: 36,
             staff: 5,
             hours: 30,
             rate: 45,
@@ -42,7 +45,8 @@ const CONFIG = {
             copies: 20
         },
         major: {
-            meetings: 120,
+            committee: 60,
+            council: 60,
             staff: 8,
             hours: 35,
             rate: 50,
@@ -83,7 +87,8 @@ const CONFIG = {
 const elements = {
     // Inputs
     orgSize: document.getElementById('orgSize'),
-    meetingsPerYear: document.getElementById('meetingsPerYear'),
+    committeeMeetings: document.getElementById('committeeMeetings'),
+    councilMeetings: document.getElementById('councilMeetings'),
     staffCount: document.getElementById('staffCount'),
     hoursPerMeeting: document.getElementById('hoursPerMeeting'),
     hoursPerMeetingValue: document.getElementById('hoursPerMeetingValue'),
@@ -132,11 +137,11 @@ const elements = {
     // Risk detail
     riskDetailBox: document.getElementById('riskDetailBox'),
     riskMessage: document.getElementById('riskMessage'),
-    lawsuitProbability: document.getElementById('lawsuitProbability'),
     avgSettlement: document.getElementById('avgSettlement'),
     
-    // Total
-    totalValue: document.getElementById('totalValue')
+    // ROI
+    roiPercent: document.getElementById('roiPercent'),
+    annualCost: document.getElementById('annualCost')
 };
 
 // Helper functions
@@ -226,7 +231,9 @@ function updateComplianceDisplay(level) {
 function calculate() {
     // Get input values
     const orgSize = elements.orgSize.value;
-    const meetings = parseInt(elements.meetingsPerYear.value) || 48;
+    const committee = parseInt(elements.committeeMeetings.value) || 0;
+    const council = parseInt(elements.councilMeetings.value) || 0;
+    const meetings = committee + council || 48;
     const staff = parseInt(elements.staffCount.value) || 3;
     const hoursManual = parseInt(elements.hoursPerMeeting.value) || 25;
     const hourlyRate = parseFloat(elements.hourlyRate.value) || 40;
@@ -265,9 +272,14 @@ function calculate() {
     
     const complianceSavings = annualRiskCostWithout - annualRiskCostWith;
     
-    // Total savings
+    // Total savings and value
     const totalSavings = laborSavings + printSavings;
     const totalValue = totalSavings + complianceSavings;
+    
+    // ROI % (annual value vs annual cost, in selected currency)
+    const annualCostNum = parseFloat(elements.annualCost.value) || 15000;
+    const totalValueInCurrency = currentCurrency === 'CAD' ? totalValue * EXCHANGE_RATE : totalValue;
+    const roiPercent = annualCostNum > 0 ? Math.round(((totalValueInCurrency - annualCostNum) / annualCostNum) * 100) : 0;
     
     // Update display - Summary cards
     elements.totalHoursSaved.textContent = formatNumber(totalHoursSaved);
@@ -303,11 +315,12 @@ function calculate() {
     elements.timeSavingsPercent.textContent = `${timeSavingsPercent}%`;
     
     // Update risk detail
-    elements.lawsuitProbability.textContent = `${Math.round(currentProbability * 100)}%`;
     elements.avgSettlement.textContent = formatCurrency(currentRiskExposure);
     
-    // Update total value
-    elements.totalValue.textContent = formatCurrency(totalValue);
+    // Update ROI %
+    if (elements.roiPercent) {
+        elements.roiPercent.textContent = roiPercent;
+    }
 }
 
 // Update defaults when organization size changes
@@ -315,7 +328,8 @@ function updateDefaults() {
     const size = elements.orgSize.value;
     const defaults = CONFIG.orgSizeDefaults[size];
     
-    elements.meetingsPerYear.value = defaults.meetings;
+    elements.committeeMeetings.value = defaults.committee;
+    elements.councilMeetings.value = defaults.council;
     elements.staffCount.value = defaults.staff;
     elements.hoursPerMeeting.value = defaults.hours;
     elements.hoursPerMeetingValue.textContent = defaults.hours;
@@ -328,8 +342,10 @@ function updateDefaults() {
 
 // Event listeners
 elements.orgSize.addEventListener('change', updateDefaults);
-elements.meetingsPerYear.addEventListener('input', calculate);
+elements.committeeMeetings.addEventListener('input', calculate);
+elements.councilMeetings.addEventListener('input', calculate);
 elements.staffCount.addEventListener('input', calculate);
+elements.annualCost.addEventListener('input', calculate);
 elements.hoursPerMeeting.addEventListener('input', function() {
     elements.hoursPerMeetingValue.textContent = this.value;
     calculate();
