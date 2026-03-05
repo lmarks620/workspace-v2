@@ -9,8 +9,8 @@ const EXCHANGE_RATE = 1.36; // USD to CAD
 
 // Configuration and benchmarks
 const CONFIG = {
-    // Hours with eScribe (based on 80% reduction average)
-    hoursWithEscribe: 5,
+    // Hours with eScribe (conservative benchmark so ROI % feels credible; ~5–6 with automation)
+    hoursWithEscribe: 6,
     
     // Printing cost per page (B&W laser)
     costPerPage: 0.07,
@@ -140,7 +140,8 @@ const elements = {
     avgSettlement: document.getElementById('avgSettlement'),
     
     // Time-based ROI % (percent of meeting prep time recovered)
-    roiPercent: document.getElementById('roiPercent')
+    roiPercent: document.getElementById('roiPercent'),
+    roiContext: document.getElementById('roiContext')
 };
 
 // Helper functions
@@ -315,6 +316,10 @@ function calculate() {
     // Update Time ROI % (% of meeting prep time recovered)
     if (elements.roiPercent) {
         elements.roiPercent.textContent = timeSavingsPercent;
+    }
+    // Show the math so the % feels credible
+    if (elements.roiContext) {
+        elements.roiContext.textContent = `${hoursManual} hrs today → ${hoursWithEscribe} hrs with eScribe = ${timeSavingsPercent}% of prep time recovered.`;
     }
 }
 

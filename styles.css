@@ -1019,6 +1019,13 @@ input[type="range"]::-webkit-slider-thumb:hover {
     margin-top: 0.5rem;
 }
 
+.roi-context {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-top: 0.35rem;
+}
+
 .roi-formula {
     font-size: 0.7rem;
     color: var(--gray-500);
